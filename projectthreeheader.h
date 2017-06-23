@@ -57,25 +57,29 @@ float get_site_maximum_temp(struct SiteInfo *siteData, int arraySize, int siteId
 float get_site_average_temp(struct SiteInfo *siteData, int arraySize, int siteId);
 float get_overall_maximum_wind(struct SiteInfo *siteData, int arraySize, int *siteId, int *day);
 
+/***********************************************************************************************/
+
 float get_random_float(double minRand, double maxRand){
-    //srand(time(NULL)); <- for some reason this ruins everything.
+    //returns a float between the numbers given
+    //srand(time(NULL)); <- for some reason this ruins everything.    
     float range = maxRand - minRand;
     float random = ((float) rand()) / (float) RAND_MAX;
     float r = random * range;
     return minRand + r;
+}//get_random_float
 
-    return minRand + (float)rand() / range;
-}
-
-
+/***********************************************************************************************/
 
 void set_site_information(float *siteParamater,float lowValue, float HighValue){
-
+    //takes in a weather site parameter float and assigns it a random value between the limites
     *siteParamater = get_random_float(lowValue,HighValue);
     return;
-}
+}//set_site?information
+
+/***********************************************************************************************/
 
 choice get_choice(void){
+    //simply returns a choice
     int numericalChoice;
     do{
         printf("Select a choice \n");
@@ -94,10 +98,12 @@ choice get_choice(void){
 
     }while(numericalChoice < 1 || numericalChoice > 3);
 
-}
+}//get_choice
 
+/***********************************************************************************************/
 
 void generate_random_data(struct SiteInfo *siteData, int arraySize, float tolerances[6][3]){
+    
     float randNum;
     int siteIds[3] = {SITE_ID1, SITE_ID2, SITE_ID3};
     for(int i = 0; i < arraySize; i++)
@@ -105,7 +111,9 @@ void generate_random_data(struct SiteInfo *siteData, int arraySize, float tolera
 
                 // i % 3 is used to generate the numbers between 0 and 2.
                 //GENERATESITE is defined as i % 3
+                
                 siteData->siteId = siteIds[GENERATESITE];
+                
                 //set wind speed
                 randNum = get_random_float(0,1);
                 if((randNum <= tolerances[WINDTOLERANCE][GENERATESITE]))
@@ -142,7 +150,9 @@ void generate_random_data(struct SiteInfo *siteData, int arraySize, float tolera
         }
 
     return;
-}
+}//generate_random_data
+
+/***********************************************************************************************/
 
 float get_site_maximum_wind(struct SiteInfo *siteData, int arraySize, int siteId){
     float maximumWind = -1000;
@@ -156,7 +166,7 @@ float get_site_maximum_wind(struct SiteInfo *siteData, int arraySize, int siteId
         siteData++;
     }
     return maximumWind;
-}
+}//get_site_maximum_wind
 
 float get_site_average_wind(struct SiteInfo *siteData, int arraySize, int siteId){
     float rollingSum = 0;
@@ -170,7 +180,9 @@ float get_site_average_wind(struct SiteInfo *siteData, int arraySize, int siteId
     }
     return rollingSum / (float) (arraySize/3);
 
-}
+}//get_site_average_wind
+
+/***********************************************************************************************/
 
 float get_site_maximum_temp(struct SiteInfo *siteData, int arraySize, int siteId){
 
@@ -185,7 +197,9 @@ float get_site_maximum_temp(struct SiteInfo *siteData, int arraySize, int siteId
         siteData++;
     }
     return maximumTemp;
-}
+}//get_site_maximum_temp
+
+/***********************************************************************************************/
 
 float get_site_average_temp(struct SiteInfo *siteData, int arraySize, int siteId){
     float rollingSum = 0;
@@ -198,8 +212,9 @@ float get_site_average_temp(struct SiteInfo *siteData, int arraySize, int siteId
         siteData++;
     }
     return rollingSum / (float) (arraySize/3);
-}
+}//get_site_average_temp
 
+/***********************************************************************************************/
 
 float get_overall_maximum_wind(struct SiteInfo *siteData, int arraySize, int *siteId, int *day){
     float maximumWind  = -1000;
@@ -214,7 +229,9 @@ float get_overall_maximum_wind(struct SiteInfo *siteData, int arraySize, int *si
         siteData++;
     }
     return maximumWind;
-}
+}//get_overall_maximum_wind
+
+/***********************************************************************************************/
 
 float get_overall_maximum_temp(struct SiteInfo *siteData, int arraySize, int *siteId, int *day){
     float maximumTemp  = -1000;
@@ -229,5 +246,6 @@ float get_overall_maximum_temp(struct SiteInfo *siteData, int arraySize, int *si
         siteData++;
     }
     return maximumTemp;
-}
+}//get_overall_maximum_temp
 #endif // PROJECTTHREEHEADER_H_INCLUDED
+/***********************************************************************************************/
