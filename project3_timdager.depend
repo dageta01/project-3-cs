@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1478295594 source:c:\users\timda\onedrive\documents\c,c++ hw and labs\project3_timdager\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"projectthreeheader.h"
+
+1478294535 c:\users\timda\onedrive\documents\c,c++ hw and labs\project3_timdager\projectthreeheader.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	<limits.h>
+
