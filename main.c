@@ -25,7 +25,7 @@ int main()
 
     do{
         switch(get_choice()){
-        case SIMULATE:
+        case SIMULATE: //create the settings and create site information
             printf("\nSimulation Settings: \n");
             for(int i = 0; i < 3; i++){
                 set_site_information(&maxMinTolerance[WINDTOLERANCE][i],LO_TOLERANCE_WIND,HI_TOLERANCE_WIND);
@@ -43,18 +43,16 @@ int main()
                 printf("    -Maximum Wind: %5.2f\n",maxMinTolerance[MAXWIND][i]);
                 printf("    -Minimum Temperature: %5.2f\n",maxMinTolerance[MINTEMP][i]);
                 printf("    -Maximum Temperature: %5.2f\n\n",maxMinTolerance[MAXTEMP][i]);
-
-
-            }
+            }//for
             generate_random_data(data,SITE_ARRAY_SIZE,maxMinTolerance);
             dataGenerated = 1;
         break;
 
-        case ANALYZE:
+        case ANALYZE: // analyze the data created in SIMULATE case
             if(dataGenerated == 0)
             {
                 printf("\nERROR: No data to analyze.\n\n");
-            }
+            }//if(dataGenerated == 0)
             else
             {
                 int maxWindDay, maxWindId, maxTempDay, maxTempId;
@@ -68,7 +66,7 @@ int main()
                     printf("    -Average Wind: %5.2f \n",get_site_average_wind(data,SITE_ARRAY_SIZE,idArray[i]));
                     printf("    -Maximum Temperature: %5.2f \n",get_site_maximum_temp(data,SITE_ARRAY_SIZE,idArray[i]));
                     printf("    -Average Temperature: %5.2f \n\n",get_site_average_temp(data,SITE_ARRAY_SIZE,idArray[i]));
-                }
+                }//for
 
                 overAllMaxTemp = get_overall_maximum_temp(data,SITE_ARRAY_SIZE,&maxTempId,&maxTempDay);
                 overAllMaxWind = get_overall_maximum_wind(data,SITE_ARRAY_SIZE,&maxWindId,&maxWindDay);
@@ -77,18 +75,16 @@ int main()
                 printf("*****************\n");
                 printf("    -Max Wind of %5.2f occurs at Site %d on Day %d\n",overAllMaxWind,maxWindId,maxWindDay);
                 printf("    -Max Temp of %5.2f occurs at Site %d on Day %d\n\n",overAllMaxTemp,maxTempId,maxTempDay);
-            }
+            }//else
             break;
         case NATURALEXIT:
             doExit = 1;
             break;
-        }
+        }//switch(getchoice())
     }while(doExit != 1);
 
-
-
     return 0;
-}
+}//main
 
 
 
