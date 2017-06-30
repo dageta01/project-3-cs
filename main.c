@@ -12,7 +12,7 @@ Instructor: Parker
 */
 
 /*
-A program meant to simulate weather information from multiple sites.
+A program to simulate weather information from multiple sites.
 */
 
 int main()
